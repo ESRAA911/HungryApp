@@ -1,7 +1,11 @@
+
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 import 'package:hungry_app/core/constants/app_colors.dart';
+import 'package:hungry_app/core/network/api_error.dart';
+import 'package:hungry_app/features/auth/data/auth_repo.dart';
 import 'package:hungry_app/features/auth/widgets/custom_auth_button.dart';
 import 'package:hungry_app/root.dart';
 import 'package:hungry_app/shared/custom_text.dart';
@@ -19,6 +23,28 @@ class _LoginViewState extends State<LoginView> {
   final GlobalKey<FormState> formKey = GlobalKey();
   final emailController = TextEditingController();
   final passController = TextEditingController();
+  bool isLoading=false;
+  AuthRepo authRepo =AuthRepo();
+  Future<void> login()async{
+    setState(() =>isLoading=true);
+    if(formKey.currentState!.validate()){
+      try{
+      final user=await authRepo.login(emailController.text.trim(), passController.text.trim());
+      if(user!=null){
+        Navigator.push(context, MaterialPageRoute(builder: (c)=>Root()));
+      }
+      setState(() =>isLoading=false);
+    }catch(e){
+      setState(() =>isLoading=false);
+      String errorMsg='unhandeled error in login';
+      if(e is ApiError){
+        errorMsg=e.message;
+      }
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(errorMsg)));
+    }
+    }
+    
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -66,11 +92,11 @@ class _LoginViewState extends State<LoginView> {
                             controller: passController,
                           ),
                           Gap(30.h),
-
+                          isLoading?CupertinoActivityIndicator(color: Colors.white,):
                           GestureDetector(
                             onTap: () {
                               if (formKey.currentState!.validate()) {
-                                print("Login tapped successfully");
+                                login();
                               }
                             },
                             child: Container(
@@ -110,10 +136,7 @@ class _LoginViewState extends State<LoginView> {
                           ),
                           Gap(15.h),
                           GestureDetector(
-                            onTap: () => Navigator.push(
-                              context,
-                              MaterialPageRoute(builder: (context) => Root()),
-                            ),
+                            onTap: () => Navigator.push(context, MaterialPageRoute(builder: (c)=>Root())),
                             child: CustomText(
                               text: 'Continue as a guest ?',
                               color: Colors.white,

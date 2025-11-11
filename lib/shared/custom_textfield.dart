@@ -46,7 +46,7 @@ class _CustomTextfieldState extends State<CustomTextfield> {
         }
         null;
       },
-      obscureText: widget.isPass,
+      obscureText: _obsecureText,
       decoration: InputDecoration(
         enabledBorder: OutlineInputBorder(
           borderSide: BorderSide(color: Colors.white),
@@ -64,7 +64,12 @@ class _CustomTextfieldState extends State<CustomTextfield> {
             ? GestureDetector(
                 onTap: _togglePassword,
 
-                child: Icon(CupertinoIcons.eye, color: Colors.white),
+                child:Icon(
+                  _obsecureText
+                      ? CupertinoIcons.eye_slash_fill
+                      : CupertinoIcons.eye_fill,
+                  color:Colors.white,
+                ),
               )
             : null,
       ),
