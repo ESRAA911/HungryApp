@@ -8,12 +8,14 @@ class CustomAuthButton extends StatelessWidget {
   final String text;
   final Color? color;
   final Color? textColor;
+  final double? radius;
   const CustomAuthButton({
     super.key,
     this.onTap,
     required this.text,
     this.color,
     this.textColor,
+    this.radius,
   });
 
   @override
@@ -21,11 +23,13 @@ class CustomAuthButton extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
+        padding: EdgeInsets.symmetric(horizontal: 15.w, vertical: 15.h),
         height: 55.h,
         width: double.infinity,
+
         decoration: BoxDecoration(
           color: color ?? Colors.white,
-          borderRadius: BorderRadius.circular(7.r),
+          borderRadius: BorderRadius.circular(radius ?? 16.0.r),
           border: Border.all(color: Colors.white),
         ),
         child: Center(
