@@ -1,6 +1,9 @@
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hungry_app/core/constants/app_colors.dart';
+import 'package:hungry_app/features/auth/data/auth_repo.dart';
+import 'package:hungry_app/features/auth/views/login_view.dart';
 import 'root.dart'; 
 class SplashView extends StatefulWidget {
   const SplashView({super.key});
@@ -15,9 +18,24 @@ class _SplashViewState extends State<SplashView>
   late Animation<double> _scaleAnimation;
   late Animation<double> _rotationAnimation;
 
+  //For auto Login
+  AuthRepo authRopo =AuthRepo();
+
+  Future<void> _checkLogin()async{
+    if(authRopo.currentUser!=null){ //if exist a user data
+      Navigator.pushReplacement(context, MaterialPageRoute(builder:(_)=>Root()));
+    }else if(authRopo.isGuest){
+      Navigator.pushReplacement(context, MaterialPageRoute(builder: (_)=>Root()));
+    }else{
+      Navigator.pushReplacement(context, MaterialPageRoute(builder: (_)=>LoginView()));
+    }
+
+  }
+
   @override
   void initState() {
     super.initState();
+    Future.delayed(const Duration(seconds:1),()=>_checkLogin);
 
     _controller = AnimationController(
       vsync: this,
