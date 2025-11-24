@@ -21,22 +21,24 @@ class CardItem extends StatelessWidget {
       color: Colors.white,
       child: Padding(
         padding: EdgeInsets.all(8.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Center(child: Image.asset(image, height: 110.h, width: 130.w)),
-            Gap(5.h),
-            CustomText(text: text, weight: FontWeight.bold,color:  Color(0xff3C2F2F),),
-            CustomText(text: desc,color:  Color(0xff3C2F2F),),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                CustomText(text: '⭐ $rate'),
-                Gap(40.w),
-                Icon(CupertinoIcons.heart_fill, color: AppColors.primary),
-              ],
-            ),
-          ],
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Center(child: Image.network(image, height: 110.h, width: 130.w)),
+              Gap(5.h),
+              CustomText(text: text, weight: FontWeight.bold,color:  Color(0xff3C2F2F),),
+              CustomText(text: desc,color:  Color(0xff3C2F2F),),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  CustomText(text: '⭐ $rate'),
+                  Gap(40.w),
+                  Icon(CupertinoIcons.heart_fill, color: AppColors.primary),
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );
