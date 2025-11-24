@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
+import 'package:hungry_app/core/constants/app_colors.dart';
 import 'package:hungry_app/features/home/data/models/topping_model.dart';
 import 'package:hungry_app/features/home/data/repo/product_repo.dart';
 import 'package:hungry_app/features/product/widgets/product_details_bottom_sheet.dart';
@@ -61,7 +62,7 @@ class _ProductDetailsViewState extends State<ProductDetailsView> {
           backgroundColor: Colors.white,
           leading: GestureDetector(
             onTap: () => Navigator.pop(context),
-            child: Icon(Icons.arrow_back),
+            child: Icon(Icons.arrow_back,color: AppColors.primary,),
           ),
         ),
         body: SingleChildScrollView(
