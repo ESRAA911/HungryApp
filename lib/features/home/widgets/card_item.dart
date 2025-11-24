@@ -1,12 +1,11 @@
+import 'dart:ui';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 import 'package:hungry_app/core/constants/app_colors.dart';
-import 'package:hungry_app/shared/custom_text.dart';
+import '../../../shared/custom_text.dart';
 
 class CardItem extends StatelessWidget {
-  final String image, text, desc, rate;
   const CardItem({
     super.key,
     required this.image,
@@ -14,30 +13,83 @@ class CardItem extends StatelessWidget {
     required this.desc,
     required this.rate,
   });
+  final String image, text, desc, rate;
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      color: Colors.white,
-      child: Padding(
-        padding: EdgeInsets.all(8.0),
-        child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Center(child: Image.network(image, height: 110.h, width: 130.w)),
-              Gap(5.h),
-              CustomText(text: text, weight: FontWeight.bold,color:  Color(0xff3C2F2F),),
-              CustomText(text: desc,color:  Color(0xff3C2F2F),),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(20),
+      child: BackdropFilter(
+        filter: ImageFilter.blur(sigmaX: 20, sigmaY: 500),
+        child: Container(
+          decoration: BoxDecoration(
+            boxShadow: [BoxShadow(color: AppColors.primary)],
+
+            gradient: LinearGradient(
+              colors: [
+                Colors.grey.shade100,
+                Colors.grey.shade300,
+                Colors.grey.shade400,
+              ],
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+            ),
+          ),
+          child: Padding(
+            padding: const EdgeInsets.all(8),
+            child: SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  CustomText(text: '⭐ $rate'),
-                  Gap(40.w),
-                  Icon(CupertinoIcons.heart_fill, color: AppColors.primary),
+                  Stack(
+                    clipBehavior: Clip.none,
+                    children: [
+                      Center(
+                        child: Image.network(image, width: 130, height: 135),
+                      ),
+                    ],
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        CustomText(
+                          text: text,
+                          weight: FontWeight.bold,
+                          size: 13,
+                          color: AppColors.primary,
+                        ),
+                        CustomText(text: desc, size: 10, color: Colors.black54),
+                        Gap(10),
+                        Row(
+                          children: [
+                            Icon(
+                              CupertinoIcons.star_fill,
+                              size: 16,
+                              color: Colors.yellow.shade500,
+                            ),
+                            Gap(6),
+                            CustomText(
+                              text: rate,
+                              size: 15,
+                              weight: FontWeight.bold,
+                              color: AppColors.primary,
+                            ),
+                            Spacer(),
+                            Icon(
+                              CupertinoIcons.heart,
+                              color: AppColors.primary,
+                              size: 20,
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
                 ],
               ),
-            ],
+            ),
           ),
         ),
       ),
