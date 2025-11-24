@@ -37,58 +37,56 @@ class CardItem extends StatelessWidget {
           ),
           child: Padding(
             padding: const EdgeInsets.all(8),
-            child: SingleChildScrollView(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Stack(
-                    clipBehavior: Clip.none,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Stack(
+                  clipBehavior: Clip.none,
+                  children: [
+                    Center(
+                      child: Image.network(image, width: 130, height: 135),
+                    ),
+                  ],
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Center(
-                        child: Image.network(image, width: 130, height: 135),
+                      CustomText(
+                        text: text,
+                        weight: FontWeight.bold,
+                        size: 13,
+                        color: AppColors.primary,
+                      ),
+                      CustomText(text: desc, size: 10, color: Colors.black54),
+                      Gap(10),
+                      Row(
+                        children: [
+                          Icon(
+                            CupertinoIcons.star_fill,
+                            size: 16,
+                            color: Colors.yellow.shade500,
+                          ),
+                          Gap(6),
+                          CustomText(
+                            text: rate,
+                            size: 15,
+                            weight: FontWeight.bold,
+                            color: AppColors.primary,
+                          ),
+                          Spacer(),
+                          Icon(
+                            CupertinoIcons.heart,
+                            color: AppColors.primary,
+                            size: 20,
+                          ),
+                        ],
                       ),
                     ],
                   ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        CustomText(
-                          text: text,
-                          weight: FontWeight.bold,
-                          size: 13,
-                          color: AppColors.primary,
-                        ),
-                        CustomText(text: desc, size: 10, color: Colors.black54),
-                        Gap(10),
-                        Row(
-                          children: [
-                            Icon(
-                              CupertinoIcons.star_fill,
-                              size: 16,
-                              color: Colors.yellow.shade500,
-                            ),
-                            Gap(6),
-                            CustomText(
-                              text: rate,
-                              size: 15,
-                              weight: FontWeight.bold,
-                              color: AppColors.primary,
-                            ),
-                            Spacer(),
-                            Icon(
-                              CupertinoIcons.heart,
-                              color: AppColors.primary,
-                              size: 20,
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
+                ),
+              ],
             ),
           ),
         ),

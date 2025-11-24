@@ -12,7 +12,7 @@ class CustomSliverPadding extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SliverPadding(
-        padding: EdgeInsetsGeometry.symmetric(horizontal: 15.w),
+        padding: EdgeInsetsGeometry.symmetric(horizontal: 5.w),
         sliver: SliverGrid(
           delegate: SliverChildBuilderDelegate(
             childCount: products?.length,
@@ -40,7 +40,9 @@ class CustomSliverPadding extends StatelessWidget {
         
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 2,
-            childAspectRatio: 0.78,
+            childAspectRatio: 0.57,
+            crossAxisSpacing: 8,
+            mainAxisSpacing: 8
           ),
         ),
             );
