@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:hungry_app/features/home/data/product_model.dart';
-import 'package:hungry_app/features/home/data/product_repo.dart';
+import 'package:hungry_app/features/home/data/models/product_model.dart';
+import 'package:hungry_app/features/home/data/repo/product_repo.dart';
 import 'package:hungry_app/features/home/widgets/custom_sliver_padding.dart';
 import 'package:hungry_app/features/home/widgets/custom_slivertooxAdapter.dart';
 

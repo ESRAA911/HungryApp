@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:hungry_app/features/home/data/product_model.dart';
+import 'package:hungry_app/features/home/data/models/product_model.dart';
 import 'package:hungry_app/features/product/views/product_details_view.dart';
 import 'package:hungry_app/features/home/widgets/card_item.dart';
 
@@ -24,7 +24,7 @@ class CustomSliverPadding extends StatelessWidget {
                   context,
                   MaterialPageRoute(
                     builder: (context) {
-                      return ProductDetailsView();
+                      return ProductDetailsView(prodImage: product.image,);
                     },
                   ),
                 );

@@ -38,8 +38,8 @@ class ToppingCard extends StatelessWidget {
                     bottomRight: Radius.circular(20),
                   ),
                 ),
-
-                child: Image.asset(
+                  
+                child: Image.network(
                   image,
                   width: 120,
                   height: 85,
@@ -48,28 +48,30 @@ class ToppingCard extends StatelessWidget {
               Gap(7),
               Container(
                 color: Color(0xff3C2F2F),
-                child: Row(
-                 // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Gap(10),
-                    CustomText(
-                      text: title,
-                      color: Colors.white,
-                      size: 16,
-                      weight: FontWeight.w500,
-                      
-                      ),
-                      Gap(22),
-                      GestureDetector(
-                        onTap: onTap,
-                        child: CircleAvatar(
-                          
-                          radius: 14,
-                          backgroundColor: Colors.red,
-                          child: Icon(Icons.add,color: Colors.white,),
+                child: SingleChildScrollView(
+                  child: Row(
+                   // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Gap(10),
+                      CustomText(
+                        text: title,
+                        color: Colors.white,
+                        size: 16,
+                        weight: FontWeight.w500,
+                        
                         ),
-                      )
-                  ],
+                        Gap(22),
+                        GestureDetector(
+                          onTap: onTap,
+                          child: CircleAvatar(
+                            
+                            radius: 14,
+                            backgroundColor: Colors.red,
+                            child: Icon(Icons.add,color: Colors.white,),
+                          ),
+                        )
+                    ],
+                  ),
                 ),
                 ),
             ],
